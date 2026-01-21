@@ -14,7 +14,12 @@ A React application that allows users to visually build forms, configure fields,
   - Required (boolean)
   - Min/Max (number fields only)
 - **Live Preview**: Real-time form preview with validation
+- **Persistent Preview State**: Form values persist when switching between tabs
 - **Import/Export**: Full JSON configuration support
+- **Dual Layout Modes**:
+  - **Split View**: Editor/Import-Export on left, live preview always visible on right
+  - **Tab View**: Traditional 3-tab layout (Editor, Preview, Import/Export)
+- **Layout Toggle**: Switch between split and tab layouts with a single click
 
 ## Getting Started
 
@@ -53,15 +58,17 @@ npm run preview
 src/
 ├── components/
 │   ├── FieldEditor.tsx      # Individual field editor
+│   ├── FormEditorPanel.tsx  # Main form editor panel with add buttons
+│   ├── FormPreview.tsx      # Live form preview with validation
 │   ├── GroupEditor.tsx      # Group/nested fields editor
-│   ├── FormPreview.tsx      # Live form preview
-│   ├── JSONImportExport.tsx # JSON import/export
+│   ├── JSONImportExport.tsx # JSON import/export functionality
+│   ├── LayoutToggle.tsx     # Toggle between split/tab layouts
 │   └── index.ts             # Component exports
 ├── context/
-│   └── FormBuilderContext.tsx # Form state management
+│   └── FormBuilderContext.tsx # Form state management (config + preview state)
 ├── types/
-│   └── index.ts             # TypeScript interfaces
-├── App.tsx                  # Main application
+│   └── index.ts             # TypeScript interfaces and types
+├── App.tsx                  # Main application with layout switching
 ├── App.css                  # Styles
 └── main.tsx                 # Entry point
 ```
@@ -76,16 +83,18 @@ src/
 - Optimized with `useMemo`, `useCallback`, and `memo`
 - Immutable state updates
 - Recursive rendering for nested groups
+- Responsive design with mobile support
 
 ## Usage
 
-1. **Add Fields**: Click "+ Text Field", "+ Number Field", or "+ Group" to add fields
-2. **Configure Fields**: Edit labels, set required status, and configure min/max for numbers
-3. **Nest Groups**: Add fields inside groups for complex form structures
-4. **Reorder**: Use ↑ and ↓ buttons to reorder fields within the same level
-5. **Preview**: Switch to "Preview" tab to see and interact with the live form
-6. **Export**: Go to "Import/Export" tab to copy or download the JSON configuration
-7. **Import**: Paste valid JSON configuration to rebuild the form structure
+1. **Choose Layout**: Use the toggle in the header to switch between split view and tab view
+2. **Add Fields**: Click "+ Text Field", "+ Number Field", or "+ Group" to add fields
+3. **Configure Fields**: Edit labels, set required status, and configure min/max for numbers
+4. **Nest Groups**: Add fields inside groups for complex form structures
+5. **Reorder**: Use ↑ and ↓ buttons to reorder fields within the same level
+6. **Preview**: In split view, preview is always visible; in tab view, switch to "Preview" tab
+7. **Export**: Go to "Import/Export" tab to copy or download the JSON configuration
+8. **Import**: Paste valid JSON configuration to rebuild the form structure
 
 ## Example JSON Configuration
 

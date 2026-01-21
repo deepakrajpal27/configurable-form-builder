@@ -108,16 +108,18 @@ const FieldEditor: React.FC<FieldEditorProps> = memo(({ field, index, totalField
                     />
                 </div>
 
-                <div className="form-group checkbox-group">
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={field.required}
-                            onChange={handleRequiredChange}
-                        />
-                        Required
-                    </label>
-                </div>
+                {!isGroupField(field) && (
+                    <div className="form-group checkbox-group">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={field.required}
+                                onChange={handleRequiredChange}
+                            />
+                            Required
+                        </label>
+                    </div>
+                )}
 
                 {isNumberField(field) && (
                     <div className="number-constraints">
