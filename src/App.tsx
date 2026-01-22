@@ -5,7 +5,7 @@ import type { LeftTab, Tab, LayoutMode } from './types';
 import './App.css';
 
 const ConfigurableFormBuilder: React.FC = () => {
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>('tabs');
+  const [layoutMode, setLayoutMode] = useState<LayoutMode>('split');
   const [activeLeftTab, setActiveLeftTab] = useState<LeftTab>('editor');
   const [activeTab, setActiveTab] = useState<Tab>('editor');
 
