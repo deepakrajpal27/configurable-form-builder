@@ -18,7 +18,7 @@ const ConfigurableFormBuilder: React.FC = () => {
               <h1>Configurable Form Builder</h1>
               <p>Build, preview, and export custom forms</p>
             </div>
-            {/* <LayoutToggle mode={layoutMode} onChange={setLayoutMode} /> */}
+            <LayoutToggle mode={layoutMode} onChange={setLayoutMode} />
           </div>
         </header>
 
