@@ -31,7 +31,10 @@ const FieldEditor: React.FC<FieldEditorProps> = memo(({ field, index, totalField
     const handleMinChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             const value = e.target.value === '' ? undefined : Number(e.target.value);
-            updateField(field.id, { min: value });
+            console.log('field', field);
+            updateField(field.id, {
+                min: value
+            });
         },
         [field.id, updateField]
     );
@@ -62,6 +65,8 @@ const FieldEditor: React.FC<FieldEditorProps> = memo(({ field, index, totalField
         },
         [field.id, addField]
     );
+
+
 
     const fieldTypeLabel = field.type.charAt(0).toUpperCase() + field.type.slice(1);
     const indentStyle = { marginLeft: `${depth * 20}px` };
@@ -121,30 +126,36 @@ const FieldEditor: React.FC<FieldEditorProps> = memo(({ field, index, totalField
                     </div>
                 )}
 
-                {isNumberField(field) && (
-                    <div className="number-constraints">
-                        <div className="form-group">
-                            <label>Min:</label>
-                            <input
-                                type="number"
-                                value={field.min ?? ''}
-                                onChange={handleMinChange}
-                                className="input input-small"
-                                placeholder="No min"
-                            />
+                {isNumberField(field) &&
+                    <>
+                        {field.max !== undefined && field.min !== undefined &&
+                            field.min > field.max &&
+                            <p>min value should be greater than max</p>}
+                        <div className="number-constraints">
+                            <div className="form-group">
+                                <label>Min:</label>
+                                <input
+                                    type="number"
+                                    value={field.min ?? ''}
+                                    onChange={handleMinChange}
+                                    className="input input-small"
+                                    placeholder="No min"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Max:</label>
+                                <input
+                                    type="number"
+                                    value={field.max ?? ''}
+                                    onChange={handleMaxChange}
+                                    min={field.min}
+                                    className="input input-small"
+                                    placeholder="No max"
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label>Max:</label>
-                            <input
-                                type="number"
-                                value={field.max ?? ''}
-                                onChange={handleMaxChange}
-                                className="input input-small"
-                                placeholder="No max"
-                            />
-                        </div>
-                    </div>
-                )}
+                    </>
+                }
 
                 {isGroupField(field) && (
                     <GroupEditor
