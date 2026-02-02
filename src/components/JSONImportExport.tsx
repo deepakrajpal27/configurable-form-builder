@@ -100,7 +100,7 @@ const JSONImportExport: React.FC = memo(() => {
                 </div>
                 <div className="export-actions">
                     <button onClick={handleExport} className="btn btn-primary">
-                        {copySuccess ? '✓ Copied!' : 'Copy to Clipboard'}
+                        {copySuccess ? 'Copied!' : 'Copy to Clipboard'}
                     </button>
                     <button onClick={handleDownload} className="btn">
                         Download JSON
